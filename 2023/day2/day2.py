@@ -13,10 +13,10 @@ def part1(input):
   for line in input:
     is_valid = True
     game_id = line.split(":")[0].strip("Game ")
-    for round in line.split(":")[1].split(";"):
-      for cube in round.split(","):
-        number = cube.strip().split(" ")[0]
-        color = cube.strip().split(" ")[1]
+    for round in line.strip().split(": ")[1].split("; "):
+      for cube in round.split(", "):
+        number = cube.split(" ")[0]
+        color = cube.split(" ")[1]
         if cubes[color] < int(number):
           is_valid = False
     if is_valid:
@@ -32,10 +32,10 @@ def part2(input):
       "green": 0,
       "blue": 0,
     }
-    for round in line.split(":")[1].split(";"):
-      for cube in round.split(","):
-        number = cube.strip().split(" ")[0]
-        color = cube.strip().split(" ")[1]
+    for round in line.strip().split(": ")[1].split("; "):
+      for cube in round.split(", "):
+        number = cube.split(" ")[0]
+        color = cube.split(" ")[1]
         if round_cubes[color] < int(number):
           round_cubes[color] = int(number)
     sum += round_cubes["red"] * round_cubes["green"] * round_cubes["blue"]
