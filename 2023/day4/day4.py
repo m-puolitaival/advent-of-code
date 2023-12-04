@@ -15,7 +15,7 @@ def part2(input):
   rounds = 0
   cards = defaultdict(list)
   for line in input:
-    cards[line.split(":")[0].split()[1]] = {
+    cards[int(line.split(":")[0].split()[1])] = {
       "num_of_cards": 1,
       "win_nums": line.split(": ")[1].split(" | ")[0].split(),
       "nums": line.split(": ")[1].split(" | ")[1].split()
@@ -24,8 +24,8 @@ def part2(input):
     for _ in range(cards[card]["num_of_cards"]):
       rounds += 1
       match_count = sum(w in cards[card]["nums"] for w in cards[card]["win_nums"])
-      for wn in range(int(card)+1, int(card)+match_count+1):
-        cards[str(wn)]["num_of_cards"] += 1
+      for wn in range(card+1, card+match_count+1):
+        cards[wn]["num_of_cards"] += 1
   return rounds
 
 result1 = part1(f)
